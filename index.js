@@ -144,9 +144,11 @@ var AxiosDigest = (function () {
         });
     };
     AxiosDigest.prototype.getWwwAuth = function (r) {
-        var status = r.response.status;
-        if (status === 401) {
-            return r.response.headers['www-authenticate'];
+        if (r.response) {
+            var status = r.response.status;
+            if (status === 401) {
+                return r.response.headers['www-authenticate'];
+            }
         }
         throw r;
     };
